@@ -7,8 +7,10 @@ import com.example.xumin.myapplication.annotation.Strategy;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
@@ -24,6 +26,9 @@ public class StrategyFilter {
      */
     @Pointcut("execution(@com.example.xumin.myapplication.annotation.Strategy * *(..))")
     public void testAspectj(){}
+
+    @Pointcut("execution(@com.example.xumin.myapplication.Caculate.testNOAnotationTest * *(..))")
+    public void testNO(){}
 
     @Around("testAspectj()")
     public void aroundTestPoint(ProceedingJoinPoint joinPoint) throws Throwable{
@@ -44,4 +49,19 @@ public class StrategyFilter {
             }
         }
     }
+
+    @Before("execution(* *..Caculate+.testNO**(..))")
+    public void testNoAnotationBefore(){
+        System.out.println("执行testNOAnotationTest前 先执行testNoAnotationBefore");
+    }
+
+    /**
+     * 第一个“*”必要的 表示返回值，任意类型
+     *
+     */
+    @After("* execution(com.example.xumin.myapplication.Caculate.testNOAnotationTest(..))")
+    public void testNoAnotationAfter(){
+        System.out.println("执行testNOAnotationTest后 再执行testNoAnotationAfter");
+    }
+
 }

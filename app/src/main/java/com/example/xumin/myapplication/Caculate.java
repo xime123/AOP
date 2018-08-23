@@ -7,4 +7,8 @@ public class Caculate {
     public void doSomething(){
         System.out.println("==========doSomething");
     }
+
+    public void testNOAnotationTest(){
+        System.out.println("==========testNOAnotationTest");
+    }
 }

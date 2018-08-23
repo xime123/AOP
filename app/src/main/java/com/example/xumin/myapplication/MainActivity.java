@@ -30,5 +30,6 @@ public class MainActivity extends AppCompatActivity {
         testAnotation();
         Caculate caculate=new Caculate();
         caculate.doSomething();
+        caculate.testNOAnotationTest();
     }
 }
